@@ -41,7 +41,11 @@ open class CheckmarkWidget(
 
     override fun getOnClickPendingIntent(context: Context): PendingIntent? {
         return if (habit.isNumerical) {
-            pendingIntentFactory.showNumberPicker(habit, DateUtils.getTodayWithOffset())
+            if (habit.enableIncrement){
+                pendingIntentFactory.incrementNumerical(habit, DateUtils.getTodayWithOffset())
+            } else {
+                pendingIntentFactory.showNumberPicker(habit, DateUtils.getTodayWithOffset())
+            }
         } else {
             pendingIntentFactory.toggleCheckmark(habit, null)
         }

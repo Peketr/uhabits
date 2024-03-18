@@ -146,6 +146,18 @@ class PendingIntentFactory
             FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT
         )
 
+    fun incrementNumerical(habit: Habit, timestamp: Timestamp): PendingIntent =
+        getBroadcast(
+            context,
+            2,
+            Intent(context, WidgetReceiver::class.java).apply {
+                data = Uri.parse(habit.uriString)
+                action = WidgetReceiver.ACTION_INCREMENT_VALUE
+                putExtra("timestamp", timestamp.unixTime)
+            },
+            FLAG_IMMUTABLE or FLAG_UPDATE_CURRENT
+        )
+
     fun updateWidgets(): PendingIntent =
         getBroadcast(
             context,

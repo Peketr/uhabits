@@ -9,7 +9,8 @@ create table Habits (
     name text,
     position integer,
     reminder_hour integer,
-    reminder_min integer
+    reminder_min integer,
+    increment real
 );
 
 create table Checkmarks (

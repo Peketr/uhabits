@@ -223,6 +223,44 @@
                 </LinearLayout>
             </FrameLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/incrementOuterBox"
+            >
+                <FrameLayout
+                    style="@style/FormOuterBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="1">
+                    <LinearLayout style="@style/FormInnerBox">
+                        <TextView
+                            style="@style/FormLabel"
+                            android:text="@string/increment" />
+                        <EditText
+                            style="@style/FormInput"
+                            android:id="@+id/incrementInput"
+                            android:maxLines="1"
+                            android:ems="10"
+                            android:hint="when clicking widget"/>
+                    </LinearLayout>
+                </FrameLayout>
+                <FrameLayout
+                    style="@style/FormOuterBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5">
+                    <LinearLayout style="@style/FormInnerBox">
+                        <TextView
+                            style="@style/FormLabel"
+                            android:text="Enable" />
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/enableincrement"/>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+
 
             <!-- Reminder -->
             <FrameLayout style="@style/FormOuterBox">

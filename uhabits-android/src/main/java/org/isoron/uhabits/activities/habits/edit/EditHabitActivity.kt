@@ -85,6 +85,8 @@ class EditHabitActivity : AppCompatActivity() {
     var reminderMin = -1
     var reminderDays: WeekdayList = WeekdayList.EVERY_DAY
     var targetType = NumericalHabitType.AT_LEAST
+    var increment = 1.0
+    var enableIncrement = false
 
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
@@ -115,6 +117,8 @@ class EditHabitActivity : AppCompatActivity() {
             binding.notesInput.setText(habit.description)
             binding.unitInput.setText(habit.unit)
             binding.targetInput.setText(habit.targetValue.toString())
+            binding.incrementInput.setText(habit.increment.toString())
+            binding.enableincrement.isChecked = habit.enableIncrement
         } else {
             habitType = HabitType.fromInt(intent.getIntExtra("habitType", HabitType.YES_NO.value))
         }
@@ -128,6 +132,8 @@ class EditHabitActivity : AppCompatActivity() {
             reminderHour = state.getInt("reminderHour")
             reminderMin = state.getInt("reminderMin")
             reminderDays = WeekdayList(state.getInt("reminderDays"))
+            increment = state.getDouble("increment")
+            enableIncrement = state.getBoolean("enableIncrement")
         }
 
         updateColors()
@@ -137,6 +143,8 @@ class EditHabitActivity : AppCompatActivity() {
                 binding.unitOuterBox.visibility = View.GONE
                 binding.targetOuterBox.visibility = View.GONE
                 binding.targetTypeOuterBox.visibility = View.GONE
+                binding.incrementOuterBox.visibility = View.GONE
+                binding.enableincrement.visibility = View.GONE
             }
             HabitType.NUMERICAL -> {
                 binding.nameInput.hint = getString(R.string.measurable_short_example)
@@ -281,6 +289,8 @@ class EditHabitActivity : AppCompatActivity() {
             habit.targetValue = binding.targetInput.text.toString().toDouble()
             habit.targetType = targetType
             habit.unit = binding.unitInput.text.trim().toString()
+            habit.increment = binding.incrementInput.text.toString().toDouble()
+            habit.enableIncrement = binding.enableincrement.isChecked
         }
         habit.type = habitType
 
@@ -375,6 +385,8 @@ class EditHabitActivity : AppCompatActivity() {
             putInt("reminderHour", reminderHour)
             putInt("reminderMin", reminderMin)
             putInt("reminderDays", reminderDays.toInteger())
+            putDouble("increment",increment)
+            putBoolean("enableIncrement",enableIncrement)
         }
     }
 }

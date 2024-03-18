@@ -39,7 +39,9 @@ data class Habit(
     val computedEntries: EntryList,
     val originalEntries: EntryList,
     val scores: ScoreList,
-    val streaks: StreakList
+    val streaks: StreakList,
+    var increment: Double = 1.0,
+    var enableIncrement: Boolean = false
 ) {
     init {
         if (uuid == null) this.uuid = UUID.randomUUID().toString().replace("-", "")
@@ -60,7 +62,7 @@ data class Habit(
         val value = computedEntries.get(today).value
         return if (isNumerical) {
             when (targetType) {
-                NumericalHabitType.AT_LEAST -> value / 1000.0 >= targetValue
+                NumericalHabitType.AT_LEAST -> value / 1000.0 / frequency.toDouble() >= targetValue
                 NumericalHabitType.AT_MOST -> value != Entry.UNKNOWN && value / 1000.0 <= targetValue
             }
         } else {
@@ -119,6 +121,8 @@ data class Habit(
         this.type = other.type
         this.unit = other.unit
         this.uuid = other.uuid
+        this.increment = other.increment
+        this.enableIncrement = other.enableIncrement
     }
 
     override fun equals(other: Any?): Boolean {

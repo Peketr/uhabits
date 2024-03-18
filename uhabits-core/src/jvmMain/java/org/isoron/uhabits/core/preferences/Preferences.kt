@@ -112,6 +112,13 @@ open class Preferences(private val storage: Storage) {
         storage.putInt("launch_count", launchCount + 1)
     }
 
+    val widgetActionIncrement: Boolean
+        get() = storage.getBoolean("pref_increment_on",false)
+
+    val incrementAmount: Int
+        get() = storage.getInt("pref_increment",1)
+
+
     val launchCount: Int
         get() = storage.getInt("launch_count", 0)
     var isDeveloper: Boolean
