@@ -22,6 +22,7 @@ package org.isoron.uhabits.widgets
 import android.app.PendingIntent
 import android.content.Context
 import android.view.View
+import org.isoron.platform.gui.Color
 import org.isoron.platform.gui.toInt
 import org.isoron.uhabits.core.models.Entry
 import org.isoron.uhabits.core.models.Habit
@@ -56,6 +57,7 @@ open class CheckmarkWidget(
             val today = DateUtils.getTodayWithOffset()
             setBackgroundAlpha(preferedBackgroundAlpha)
             activeColor = WidgetTheme().color(habit.color).toInt()
+            autoColor = Color(WidgetTheme().color(habit.color).red/2,WidgetTheme().color(habit.color).green/2,WidgetTheme().color(habit.color).blue/2,WidgetTheme().color(habit.color).alpha).toInt()
             name = habit.name
             entryValue = habit.computedEntries.get(today).value
             if (habit.isNumerical) {
