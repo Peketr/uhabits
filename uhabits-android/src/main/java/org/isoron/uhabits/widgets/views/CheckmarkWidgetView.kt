@@ -43,6 +43,7 @@ import kotlin.math.roundToInt
 
 class CheckmarkWidgetView : HabitWidgetView {
     var activeColor: Int = 0
+    var autoColor: Int = 0
 
     var percentage = 0f
     var name: String? = null
@@ -68,8 +69,14 @@ class CheckmarkWidgetView : HabitWidgetView {
         val fgColor: Int
         setShadowAlpha(0x4f)
         when (entryState) {
-            YES_MANUAL, SKIP, YES_AUTO -> {
+            YES_MANUAL, SKIP -> {
                 bgColor = activeColor
+                fgColor = res.getColor(R.attr.contrast0)
+                backgroundPaint!!.color = bgColor
+                frame!!.setBackgroundDrawable(background)
+            }
+            YES_AUTO -> {
+                bgColor = autoColor
                 fgColor = res.getColor(R.attr.contrast0)
                 backgroundPaint!!.color = bgColor
                 frame!!.setBackgroundDrawable(background)
