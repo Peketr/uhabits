@@ -76,6 +76,15 @@
                 android:title="@string/widget_opacity_title"
                 app:iconSpaceReserved="false" />
 
+        <SeekBarPreference
+            app:iconSpaceReserved="false"
+            android:key="pref_widget_auto_dim"
+            android:summary="@string/widget_dim_description"
+            android:title="@string/widget_dim_title"
+            app:min="0"
+            android:max="100"
+            />
+
         <ListPreference
                 android:key="pref_first_weekday"
                 android:title="@string/first_day_of_the_week"

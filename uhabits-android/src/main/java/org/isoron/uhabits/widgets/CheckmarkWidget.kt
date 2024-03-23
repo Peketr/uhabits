@@ -53,7 +53,8 @@ open class CheckmarkWidget(
             val today = DateUtils.getTodayWithOffset()
             setBackgroundAlpha(preferedBackgroundAlpha)
             activeColor = WidgetTheme().color(habit.color).toInt()
-            autoColor = WidgetTheme().color(habit.color).blendWith(Color.BLACK,0.4).toInt()
+            val dim = prefs.widgetDim
+            autoColor = WidgetTheme().color(habit.color).blendWith(Color.BLACK,dim/100.0).toInt()
             name = habit.name
             entryValue = habit.computedEntries.get(today).value
             if (habit.isNumerical) {

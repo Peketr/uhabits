@@ -192,6 +192,11 @@ open class Preferences(private val storage: Storage) {
         set(value) {
             storage.putString("pref_widget_opacity", value.toString())
         }
+    var widgetDim: Int
+        get() = storage.getInt("pref_widget_auto_dim", 0)
+        set(value) {
+            storage.putInt("pref_widget_auto_dim", value)
+    }
     var isSkipEnabled: Boolean
         get() = storage.getBoolean("pref_skip_enabled", false)
         set(value) {
